@@ -8,10 +8,10 @@
 		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>reportInformecom.example</groupId>
-	<artifactId>reportInf</artifactId>
+	<groupId>com.desing-pattern</groupId>
+	<artifactId>demo-reporting-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>reportInf</name>
+	<name>demo-reporting-system</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
