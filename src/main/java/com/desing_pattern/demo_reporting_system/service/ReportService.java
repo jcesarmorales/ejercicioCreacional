@@ -4,11 +4,10 @@ import com.desing_pattern.demo_reporting_system.domain.abstractFactory.factory.E
 import com.desing_pattern.demo_reporting_system.domain.abstractFactory.factory.HTMLReportFactory;
 import com.desing_pattern.demo_reporting_system.domain.abstractFactory.factory.IReportStyleFactory;
 import com.desing_pattern.demo_reporting_system.domain.abstractFactory.factory.PDFReportFactory;
-import com.desing_pattern.demo_reporting_system.domain.builder.CustomReport;
-import com.desing_pattern.demo_reporting_system.domain.builder.ReportBuilder;
-import com.desing_pattern.demo_reporting_system.domain.builder.ReportDirector;
+import com.desing_pattern.demo_reporting_system.domain.builder.ConcreteReportBuilder;
 import com.desing_pattern.demo_reporting_system.domain.factoryMethod.IReport;
 import com.desing_pattern.demo_reporting_system.domain.factoryMethod.ReportFactory;
+import com.desing_pattern.demo_reporting_system.models.ReportData;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,15 +50,14 @@ public class ReportService {
     }
 
     // Builder Pattern
-    public String generateCustomReport(String title, String header, String body, String footer) {
-        ReportBuilder builder = new ReportBuilder();
-        ReportDirector director = new ReportDirector(builder);
-        CustomReport report = builder.setTitle(title)
-                .setHeader(header)
-                .setBody(body)
-                .setFooter(footer)
-                .build(); // Construimos el informe personalizado
-        return report.generate(); // Devolvemos la generación del informe
+    public String generateCustomReport(ReportData reportData) {
+        ConcreteReportBuilder builder = new ConcreteReportBuilder();
+        builder.setTitle(reportData.getTitle());
+        builder.setHeader(reportData.getHeader());
+        builder.setBody(reportData.getBody());
+        builder.setFooter(reportData.getFooter());
+        builder.setFormat(reportData.getFormat()); // Especifica el formato deseado
+        return builder.generateReport(); // Genera el informe en el formato deseado
     }
 
 }

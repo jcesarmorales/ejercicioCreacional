@@ -1,5 +1,9 @@
 package com.desing_pattern.demo_reporting_system.domain.builder;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class CustomReport {
 
     private String title;
@@ -15,11 +19,18 @@ public class CustomReport {
     }
 
     public String generate() {
-        return "====================\nCustom Report\n====================\n" +
-                "Title: " + title + "\n" +
-                "Header: " + header + "\n" +
-                "Body: " + body + "\n" +
-                "Footer: " + footer + "\n====================\n";
+        String reportContent = "====================\nInforme Personalizado\n====================\n" +
+                "Título: " + title + "\n" +
+                "Encabezado: " + header + "\n" +
+                "Cuerpo: " + body + "\n" +
+                "Pie de página: " + footer + "\n====================\n";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("InformePersonalizado.txt"))) {
+            writer.write(reportContent);
+            return "Informe Personalizado generado con éxito!";
+        } catch (IOException e) {
+            return "Error al generar el Informe Personalizado: " + e.getMessage();
+        }
     }
 
 }

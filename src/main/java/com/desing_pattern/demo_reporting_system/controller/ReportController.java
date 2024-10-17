@@ -27,6 +27,6 @@ public class ReportController {
 
     @PostMapping("/generate-custom")
     public String generateCustomReport(@RequestBody ReportData reportData) {
-        return reportService.generateCustomReport(reportData.getTitle(), reportData.getHeader(), reportData.getBody(), reportData.getFooter());
+        return reportService.generateCustomReport(reportData);
     }
 }
